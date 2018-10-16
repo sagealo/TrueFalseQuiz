@@ -1,0 +1,42 @@
+[
+  {
+    "question":"1.J is the only letter not present in any of the 50 United States names",
+    "answer": false
+  },
+  {
+    "question": "2.  The derivative of 9x^3 is 27x",
+    "answer": false
+  },
+  {
+    "question": "3. The supply of Bitcoin is finite, meaning there will only ever be 21 million bitcoins",
+    "answer": true
+  },
+  {
+    "question": "4. It takes 20 pounds of milk to make 1 pound of cheese",
+    "answer": false
+  },
+  {
+    "question": "5. Earth is the only habitable planet in the universe",
+    "answer": false
+  },
+  {
+    "question": "6. Fortnite made over $300 million in May 2018",
+    "answer": true
+  },
+  {
+    "question": "7. The Rubik's Cube original name was Magica Cube",
+    "answer": false
+  },
+  {
+    "question": "8. Among the toys carried in into space aboard the Challenger, a YoYo was one of them",
+    "answer": true
+  },
+  {
+    "question": "9. There are 195 Countries",
+    "answer": true
+  },
+  {
+    "question": "10. Russia is larger than Africa",
+    "answer": false
+  }
+]
