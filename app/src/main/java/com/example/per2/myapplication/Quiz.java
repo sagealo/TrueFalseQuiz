@@ -13,8 +13,12 @@ public class Quiz {
         questions = questionList;
     }
 
-    public List getQuestions(){
-        return questions;
+    public String getQuestion(int i){
+        return questions.get(i).toString();
+    }
+
+    public int getQuizLength(){
+        return questions.size();
     }
 
     public void setQuestions(List<Question> questionList){
