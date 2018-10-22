@@ -13,8 +13,8 @@ public class Quiz {
         questions = questionList;
     }
 
-    public String getQuestion(int i){
-        return questions.get(i).toString();
+    public Question getQuestion(){
+        return questions.get(currentQ);
     }
 
     public int getQuizLength(){
@@ -46,7 +46,7 @@ public class Quiz {
     }
 
     public boolean isThereAnotherQ(){
-        if(getCurrentQ()==10){
+        if(getCurrentQ()==9){
             return false;
         }
         else{
