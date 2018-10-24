@@ -22,31 +22,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "cheese";
     private Button trueButton;
     private Button falseButton;
-    private TextView question;
+    private TextView questionView;
+    private TextView scoreView;
     private Quiz quiz;
-    int score;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // getting XML
-        score = 0;
+
         initializeQuiz();
         wireWidgets();
         setListeners();
         Log.d("Quiz", "onCreate: "+ "Quiz");
+
         displayNextQuestion(quiz);
+
 
     }
 
     private void displayNextQuestion(Quiz theQuiz) {
         try{
-            theQuiz.setCurrentQ(theQuiz.getCurrentQ()+1);
-            question.setText(theQuiz.getQuestion().getQuestion());
+
+            theQuiz.setCurrentQ(theQuiz.getCurrentQ());
+            questionView.setText(theQuiz.getQuestion().getQuestionText());
+            theQuiz.nextQuestion();
         }
         catch(Exception e){
-            Toast.makeText(this, score, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, theQuiz.getScore(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -59,7 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void wireWidgets() {
         trueButton = findViewById(R.id.button_mainactivity_true);
         falseButton = findViewById(R.id.button_mainactivity_false);
-        question = findViewById(R.id.textview_mainactivity_question);
+        questionView = findViewById(R.id.textview_mainactivity_questiondisplay);
+        scoreView = findViewById(R.id.textview_mainactivity_score);
+
     }
 
     public void initializeQuiz() {
@@ -74,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // verify that it read everything properly
         Log.d(TAG, "onCreate: " + questionList.toString());
         quiz = new Quiz(questionList);
+
 
     }
 
@@ -107,7 +115,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void answerQuestion(boolean b) {
          if(quiz.getQuestion().checkAnswer(b)==true){
-             score+=1;
+
+             quiz.increaseScore();
+             scoreView.setText(String.valueOf(quiz.getScore()));
              displayNextQuestion(quiz);
          }
          else{
