@@ -5,11 +5,13 @@ import java.util.List;
 public class Quiz {
     private int score;
     private int currentQ;
+
     private List<Question> questions;
 
     public Quiz(List<Question> questionList){
         score = 0;
         currentQ= 0;
+
         questions = questionList;
     }
 
@@ -45,10 +47,11 @@ public class Quiz {
 
     public void nextQuestion(){
         currentQ+=1;
+
     }
 
     public boolean isThereAnotherQ(){
-        if(getCurrentQ()==9){
+        if(getCurrentQ()==10){
             return false;
         }
         else{

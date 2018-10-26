@@ -1,6 +1,7 @@
 package com.example.per2.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "cheese";
+    public static final String EXTRA_SENT_SCORE = "Your score is:";
     private Button trueButton;
     private Button falseButton;
     private TextView questionView;
@@ -37,22 +39,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         wireWidgets();
         setListeners();
         Log.d("Quiz", "onCreate: "+ "Quiz");
-
-        displayNextQuestion(quiz);
+        scoreView.setText(String.valueOf(+quiz.getScore()));
+        displayFirstQuestion(quiz);
 
 
     }
 
+    private void displayFirstQuestion(Quiz quiz) {
+        quiz.setCurrentQ(quiz.getCurrentQ());
+        questionView.setText(quiz.getQuestion().getQuestionText());
+
+    }
+
     private void displayNextQuestion(Quiz theQuiz) {
-        try{
 
             theQuiz.setCurrentQ(theQuiz.getCurrentQ());
             questionView.setText(theQuiz.getQuestion().getQuestionText());
-            theQuiz.nextQuestion();
-        }
-        catch(Exception e){
-            Toast.makeText(this, theQuiz.getScore(), Toast.LENGTH_SHORT).show();
-        }
+
     }
 
 
@@ -114,15 +117,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      }
 
     private void answerQuestion(boolean b) {
-         if(quiz.getQuestion().checkAnswer(b)==true){
+         if(quiz.getQuestion().checkAnswer(b)){
 
              quiz.increaseScore();
              scoreView.setText(String.valueOf(quiz.getScore()));
-             displayNextQuestion(quiz);
+             quiz.nextQuestion();
+             if(quiz.isThereAnotherQ()){
+                displayNextQuestion(quiz);
+             }
+             else{
+                 newActivity();
+             }
          }
          else{
-             displayNextQuestion(quiz);
+             scoreView.setText(String.valueOf(quiz.getScore()));
+             quiz.nextQuestion();
+             if(quiz.isThereAnotherQ()){
+                 displayNextQuestion(quiz);
+             }
+             else{
+                 newActivity();
+             }
          }
+    }
+
+    private void newActivity() {
+        Intent intentFinishGame =
+                new Intent(MainActivity.this, EndGameActivity.class);
+        intentFinishGame.putExtra(EXTRA_SENT_SCORE, String.valueOf(quiz.getScore()));
+        startActivity(intentFinishGame);
     }
 
 }

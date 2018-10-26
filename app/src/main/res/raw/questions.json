@@ -38,5 +38,9 @@
   {
     "question": "10. Russia is larger than Africa",
     "answer": false
+  },
+  {
+    "question": "NO MORE QUESTIONS",
+    "answer":true
   }
 ]

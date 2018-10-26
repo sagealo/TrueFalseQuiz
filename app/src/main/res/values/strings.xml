@@ -4,4 +4,5 @@
     <string name="quiz_false">False</string>
     <string name="textviewscore">TextView</string>
     <string name="textviewquestiondisplay">TextView</string>
+    <string name="textviewscoreendgame">TextView</string>
 </resources>
