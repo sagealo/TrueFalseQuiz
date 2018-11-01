@@ -5,4 +5,5 @@
     <string name="textviewscore">TextView</string>
     <string name="textviewquestiondisplay">TextView</string>
     <string name="textviewscoreendgame">TextView</string>
+    <string name="retry">RETRY</string>
 </resources>
